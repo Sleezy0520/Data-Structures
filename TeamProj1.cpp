@@ -19,7 +19,7 @@ void cinfail();
 
 
 int main() {
-    const int maxsize = 3;
+    const int maxsize = 20;
     studentType student[maxsize];
 
     ifstream infile;
