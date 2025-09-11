@@ -13,14 +13,12 @@ struct studentType
 
 void readStudentData(ifstream &inFile, vector<studentType> &students);
 void calcGrade(vector<studentType> &student);
-void printData(vector<studentType> &student);
+void printData(vector<studentType> &student, ofstream &outfile);
 int highestTestScore(vector<studentType> &student);
-void printHighestTestScore(vector<studentType> &student);
 void cinfail();
 
 int main()
 {
-    const int maxsize = 20;
     vector<studentType> student;
     ifstream inFile("students.txt");
     ofstream outFile("results.txt");
@@ -38,8 +36,10 @@ int main()
 
     readStudentData(inFile, student);
     calcGrade(student);
-    printData(student);
-    printHighestTestScore(student);
+    printData(student, outFile);
+
+    inFile.close();
+    outFile.close();
 
     return 0;
 }
@@ -93,26 +93,23 @@ int highestTestScore(vector<studentType> &student)
     return highest;
 }
 
-void printHighestTestScore(vector<studentType> &student)
+
+void printData(vector<studentType> &student, ofstream &outfile)
 {
     int highest = highestTestScore(student);
     for (int i = 0; i < student.size(); i++)
     {
-        if (student[i].testScore == highest)
-        {
-            cout << "---------------------------------" << endl;
-            cout << student[i].studentFName << " " << student[i].studentLName << " has the highest test score of " << student[i].testScore << endl;
-        }
+        outfile << "Student Name: " << student[i].studentLName << ", " << student[i].studentFName << endl;
+        outfile << "Test Score: " << student[i].testScore << endl;
+        outfile << "Grade: " << student[i].grade << endl;
+        outfile << "---------------------------------" << endl;
     }
-}
-
-void printData(vector<studentType> &student)
-{
     for (int i = 0; i < student.size(); i++)
     {
-        cout << "Student Name: " << student[i].studentLName << ", " << student[i].studentFName << endl;
-        cout << "Test Score: " << student[i].testScore << endl;
-        cout << "Grade: " << student[i].grade << endl;
+        if (student[i].testScore == highest)
+        {
+            outfile << student[i].studentFName << " " << student[i].studentLName << " has the highest test score of " << student[i].testScore << endl;
+        }
     }
 }
 
