@@ -13,9 +13,9 @@ struct studentType
 
 void readStudentData(ifstream &inFile, vector<studentType> &students);
 void calcGrade(vector<studentType> &student);
-void printData(vector<studentType> &student);
+void printData(ofstream &outFile, vector<studentType> &student);
 int highestTestScore(vector<studentType> &student);
-void printHighestTestScore(vector<studentType> &student);
+void printHighestTestScore(ofstream &outFile, vector<studentType> &student);
 void cinfail();
 
 int main()
@@ -38,8 +38,8 @@ int main()
 
     readStudentData(inFile, student);
     calcGrade(student);
-    printData(student);
-    printHighestTestScore(student);
+    printData(outFile, student);
+    printHighestTestScore(outFile, student);
 
     return 0;
 }
@@ -93,20 +93,24 @@ int highestTestScore(vector<studentType> &student)
     return highest;
 }
 
-void printHighestTestScore(vector<studentType> &student)
+void printHighestTestScore(ofstream &outFile, vector<studentType> &student)
 {
     int highest = highestTestScore(student);
+
+    cout << "\nHighest test score: " << highest << endl;
+    cout << "Student(s) with higest test score: " << endl;
+    
     for (int i = 0; i < student.size(); i++)
     {
         if (student[i].testScore == highest)
         {
             cout << "---------------------------------" << endl;
-            cout << student[i].studentFName << " " << student[i].studentLName << " has the highest test score of " << student[i].testScore << endl;
+            cout << "  " << student[i].studentLName << ", " << student[i].studentFName << endl;
         }
     }
 }
 
-void printData(vector<studentType> &student)
+void printData(ofstream &outFile, vector<studentType> &student)
 {
     for (int i = 0; i < student.size(); i++)
     {
