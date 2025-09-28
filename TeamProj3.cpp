@@ -88,11 +88,11 @@ public:
 
     void displayBill() const
     {
-        cout << "Patient ID: " << patientID << std::endl;
-        cout << "Pharmacy Charges: $" << pharmacyCharges << std::endl;
-        cout << "Doctor's Fee: $" << doctorFee << std::endl;
-        cout << "Room Charges: $" << roomCharges << std::endl;
-        cout << "Total Charges: $" << calculateTotalCharges() << std::endl;
+        cout << "Patient ID: " << patientID << endl;
+        cout << "Pharmacy Charges: $" << pharmacyCharges << endl;
+        cout << "Doctor's Fee: $" << doctorFee << endl;
+        cout << "Room Charges: $" << roomCharges << endl;
+        cout << "Total Charges: $" << calculateTotalCharges() << endl;
     }
 };
 
