@@ -142,3 +142,41 @@ doctorType::doctorType(string first, string last, string s) : personType(first, 
 {
     specialty = s;
 }
+
+// test personType
+cout << "----- personType Test -----" << endl;
+personType p1("Calloway", "Sahara");
+cout << "Person: ";
+p1.print();
+
+p1.setName("Doe", "Jane");
+cout << "\nUpdated person: ";
+
+// test doctorType
+cout << "---- doctorType Test ----" << endl;
+doctorType d1("House", "Gregory", "Pathologist");
+cout << "Name: "";
+d1.print();
+cout << "\nSpeciality: " << d1.getSpeciality << endl;
+
+d1.setSpecialty("Neurologist");
+cout << "Updated Specialty: " << d1.getSpecialty() << endl;
+
+// test billType
+cout << "---- billType test ----" << endl;
+billType b1(101, 150.75, 500.00, 1200.25);
+
+cout << "Bill:" << endl;
+b1.displayBill();
+cout << endl;
+
+// Update charges
+b1.setPharmacyCharges(200.50);
+b1.setDoctorFee(600.00);
+b1.setRoomCharges(1300.00);
+
+cout << "Updated Bill:" << endl;
+b1.displayBill();
+
+return 0;
+}
