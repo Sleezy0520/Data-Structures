@@ -96,6 +96,60 @@ public:
     }
 };
 
+class dateType {
+private:
+    int month, day, year;
+
+public:
+    dateType(int m = 1, int d = 1, int y = 2000)
+        : month(m), day(d), year(y) {}
+
+    void setDate(int m, int d, int y) {
+        month = m;
+        day = d;
+        year = y;
+    }
+
+    void printDate() const {
+        cout << month << "/" << day << "/" << year;
+    }
+};
+
+class patientType : public personType {
+private:
+    int patientID;
+    int age;
+    dateType dateofBirth;
+    dateType admittedDate;
+    dateType dischargeDate;
+    doctorType attendingPhysician;
+
+public:
+    patientType(
+        string fName = "", string lName = "", int id = 0, int a = 0,
+        dateType dob = dateType(),
+        dateType admit = dateType(),
+        dateType discharge = dateType(),
+        doctorType doctor = doctorType()
+    )
+    : personType(fName, lName),
+      patientID(id),
+      age(a),
+      dateofBirth(dob),
+      admittedDate(admit),
+      dischargeDate(discharge),
+      attendingPhysician(doctor) {}
+
+    void printPatientInfo() const {
+        cout << "Patient Name: " << firstName << " " << lastName << endl;
+        cout << "ID: " << patientID << " Age: " << age << endl;
+        cout << "Date of Birth: "; dateofBirth.printDate(); cout << endl;
+        cout << "Admitted Date: "; admittedDate.printDate(); cout << endl;
+        cout << "Discharge Date: "; dischargeDate.printDate(); cout << endl;
+        cout << "Attending Physician: "; attendingPhysician.print(); cout << endl;
+    }
+};
+
 int main()
 {
     // main function
