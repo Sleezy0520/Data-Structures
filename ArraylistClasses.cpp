@@ -150,8 +150,48 @@ class orderedArrayListType : public arrayListType
     orderedArrayListType(int size = 100);
     private:
 };
+void orderedArrayListType::insertAt(int location, int insertitem)
+{
+}
+void orderedArrayListType::insertEnd(int insertItem)
+{
 
-void orderedArrayListType::insert(int insertItem)
+}
+
+void orderedArrayListType::replaceAt(int location, int repItem)
+{
+
+}
+
+int orderedArrayListType::seqSearch(int searchItem) const
+{
+    int loc;
+    bool found;
+    loc = 0;
+
+    while(loc < length && !found)
+    {
+        if (list[loc] == searchItem)
+        {
+            found = true;
+        }
+        else
+        {
+            loc++;
+        }
+    }
+
+    if(found)
+    {
+        return loc;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+void orderedArrayListType::insert(int insertItem) //Changed from the textbook because it didn't make sense to me.
 {
     if(length == 0)
     {
@@ -163,18 +203,14 @@ void orderedArrayListType::insert(int insertItem)
     }
     else 
     {
-        int loc;
-        bool found = false;
-        for(loc = 0; loc < length; loc++)
+        int loc = 0;
+
+        while(loc < length && list[loc] < insertItem)
         {
-            if(list[loc] == insertItem)
-            {
-                found = true;
-                break;
-            }
+            loc++; 
         }
-        
-        for(int i = length; i = loc; i--)
+    
+        for(int i = length; i > loc; i--)
         {
             list[i] = list[i-1];
         }
@@ -182,4 +218,36 @@ void orderedArrayListType::insert(int insertItem)
         list[loc] = insertItem;
         length++;
     }
+}
+
+void orderedArrayListType::remove(int removeItem)
+{
+    int loc;
+
+    if(length == 0)
+    {
+        cout << "Cannot delete from an empty list." << endl;
+    }
+    else
+    {
+        loc = seqSearch(removeItem);
+    }
+    if(loc != -1)
+    {
+        for(int i = loc; i < length - 1; i++)
+        {
+            list[i] = list[i+1];
+        }
+
+        length--;
+    }
+    else
+    {
+        cout << "Item Not Found."<< endl;
+    }
+    
+}
+
+orderedArrayListType::orderedArrayListType(int size):arrayListType(size)
+{    
 }
