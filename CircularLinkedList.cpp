@@ -17,7 +17,7 @@ int main()
     cin >> num;
    }
 
-   cout << "List: ";
+   cout << "List has " << list.length()<< " nodes: ";
    list.print();
 
    cout << "What number do you want to search for: ";

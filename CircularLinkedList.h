@@ -73,27 +73,27 @@ template <class Type>
 bool CircularLinkedList<Type>::search(const Type& searchItem) const
 {
     nodeType<Type> *current = first;
-    bool found = false;
+
+    if(first == nullptr)
+    {
+        return false;
+    }
 
     do
     {
-        if(current -> info >= searchItem)
+        if(current -> info > searchItem)
         {
-            found = true;
+            return false;
         }
-        else
+        else if(current -> info == searchItem)
         {
-            current = current -> link;
+            return true;
         }
+        current = current -> link;
     }
     while(current != first);
 
-    if(found)
-    {
-        found = (current->info == searchItem);
-    }
-
-    return found;
+    return false;
 }
 
 template <class Type>
